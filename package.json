@@ -1,0 +1,24 @@
+{
+  "name": "finales",
+  "version": "1.0.0",
+  "description": "Personal financial management system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuelrmenesesr/finales.git"
+  },
+  "keywords": [
+    "personal-finance",
+    "budgeting",
+    "expense-tracking"
+  ],
+  "author": "Manuel Meneses",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/manuelrmenesesr/finales/issues"
+  },
+  "homepage": "https://github.com/manuelrmenesesr/finales#readme"
+}

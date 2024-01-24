@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Personal financial management system",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "init-db": "npx prisma migrate deploy && node src/controller/init.js",
+    "start": "node src/controller/saveTransactions.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/manuelrmenesesr/finales/issues"
   },
-  "homepage": "https://github.com/manuelrmenesesr/finales#readme"
+  "homepage": "https://github.com/manuelrmenesesr/finales#readme",
+  "devDependencies": {
+    "prisma": "5.8.1"
+  },
+  "dependencies": {
+    "@prisma/client": "5.8.1"
+  }
 }

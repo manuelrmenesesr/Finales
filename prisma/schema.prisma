@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Accounts {
+  id           Int            @id @default(autoincrement())
+  name         String
+  entity       String?
+  cutoffDay    Int?
+  Transactions Transactions[]
+
+  @@unique([name, entity])
+}
+
+model Categories {
+  id           Int            @id @default(autoincrement())
+  category     String
+  subcategory  String
+  Transactions Transactions[]
+
+  @@unique([category, subcategory])
+}
+
+model Transactions {
+  id         Int        @id @default(autoincrement())
+  concept    String
+  amount     Decimal
+  date       DateTime
+  categoryId Int
+  accountId  Int
+  Accounts   Accounts   @relation(fields: [accountId], references: [id])
+  Categories Categories @relation(fields: [categoryId], references: [id])
+}

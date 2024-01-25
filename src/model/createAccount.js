@@ -1,7 +1,7 @@
 export default async (prisma, account) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const accountCreated = await prisma.accounts.create({
+      const accountCreated = await prisma.account.create({
         data: account,
       })
       console.log("[INFO] Account created: ", accountCreated);

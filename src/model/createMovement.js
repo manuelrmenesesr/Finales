@@ -1,7 +1,7 @@
 export default async (prisma, transaction) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const transactionCreated = await prisma.transactions.create({
+      const transactionCreated = await prisma.movement.create({
         data: transaction,
       })
       console.log("[INFO] Transaction created: ", transactionCreated);

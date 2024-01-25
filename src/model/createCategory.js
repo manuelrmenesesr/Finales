@@ -1,7 +1,7 @@
 export default async (prisma, category) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const categoryCreated = await prisma.categories.create({
+      const categoryCreated = await prisma.category.create({
         data: category,
       })
       console.log("[INFO] Category created: ", categoryCreated);

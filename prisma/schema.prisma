@@ -7,32 +7,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Accounts {
-  id           Int            @id @default(autoincrement())
-  name         String
-  entity       String?
-  cutoffDay    Int?
-  Transactions Transactions[]
+model Account {
+  id        Int        @id @default(autoincrement())
+  name      String
+  entity    String?
+  cutoffDay Int?
+  Movements Movement[]
 
   @@unique([name, entity])
 }
 
-model Categories {
-  id           Int            @id @default(autoincrement())
-  category     String
-  subcategory  String
-  Transactions Transactions[]
+model CategoriesOnTransactions {
+  id            Int      @id @default(autoincrement())
+  categoryId    Int
+  transactionId Int
+  amount        Decimal?
+  Category      Category @relation(fields: [categoryId], references: [id])
+  Movements     Movement @relation(fields: [transactionId], references: [id])
+
+  @@unique([categoryId, transactionId])
+}
+
+model Category {
+  id                       Int                        @id @default(autoincrement())
+  category                 String
+  subcategory              String
+  categoriesOnTransactions CategoriesOnTransactions[]
 
   @@unique([category, subcategory])
 }
 
-model Transactions {
-  id         Int        @id @default(autoincrement())
-  concept    String
-  amount     Decimal
-  date       DateTime
-  categoryId Int
-  accountId  Int
-  Accounts   Accounts   @relation(fields: [accountId], references: [id])
-  Categories Categories @relation(fields: [categoryId], references: [id])
+model Movement {
+  id                       Int                        @id @default(autoincrement())
+  concept                  String
+  amount                   Decimal
+  date                     DateTime
+  accountId                Int
+  Account                  Account                    @relation(fields: [accountId], references: [id])
+  categoriesOnTransactions CategoriesOnTransactions[]
 }

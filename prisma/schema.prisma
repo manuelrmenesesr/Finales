@@ -17,32 +17,32 @@ model Account {
   @@unique([name, entity])
 }
 
-model CategoriesOnTransactions {
-  id            Int      @id @default(autoincrement())
-  categoryId    Int
-  transactionId Int
-  amount        Decimal?
-  Category      Category @relation(fields: [categoryId], references: [id])
-  Movements     Movement @relation(fields: [transactionId], references: [id])
+model CategoriesOnMovements {
+  id         Int      @id @default(autoincrement())
+  categoryId Int
+  movementId Int
+  amount     Decimal
+  Category   Category @relation(fields: [categoryId], references: [id])
+  Movements  Movement @relation(fields: [movementId], references: [id])
 
-  @@unique([categoryId, transactionId])
+  @@unique([categoryId, movementId])
 }
 
 model Category {
-  id                       Int                        @id @default(autoincrement())
-  category                 String
-  subcategory              String
-  categoriesOnTransactions CategoriesOnTransactions[]
+  id                    Int                     @id @default(autoincrement())
+  category              String
+  subcategory           String
+  mategoriesOnMovements CategoriesOnMovements[]
 
   @@unique([category, subcategory])
 }
 
 model Movement {
-  id                       Int                        @id @default(autoincrement())
-  concept                  String
-  amount                   Decimal
-  date                     DateTime
-  accountId                Int
-  Account                  Account                    @relation(fields: [accountId], references: [id])
-  categoriesOnTransactions CategoriesOnTransactions[]
+  id                    Int                     @id @default(autoincrement())
+  concept               String
+  amount                Decimal
+  date                  DateTime
+  accountId             Int
+  Account               Account                 @relation(fields: [accountId], references: [id])
+  categoriesOnMovements CategoriesOnMovements[]
 }

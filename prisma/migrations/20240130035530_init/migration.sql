@@ -7,13 +7,13 @@ CREATE TABLE "Account" (
 );
 
 -- CreateTable
-CREATE TABLE "CategoriesOnTransactions" (
+CREATE TABLE "CategoriesOnMovements" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "categoryId" INTEGER NOT NULL,
-    "transactionId" INTEGER NOT NULL,
-    "amount" DECIMAL,
-    CONSTRAINT "CategoriesOnTransactions_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT "CategoriesOnTransactions_transactionId_fkey" FOREIGN KEY ("transactionId") REFERENCES "Movement" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    "movementId" INTEGER NOT NULL,
+    "amount" DECIMAL NOT NULL,
+    CONSTRAINT "CategoriesOnMovements_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Category" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "CategoriesOnMovements_movementId_fkey" FOREIGN KEY ("movementId") REFERENCES "Movement" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateTable
@@ -37,7 +37,7 @@ CREATE TABLE "Movement" (
 CREATE UNIQUE INDEX "Account_name_entity_key" ON "Account"("name", "entity");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "CategoriesOnTransactions_categoryId_transactionId_key" ON "CategoriesOnTransactions"("categoryId", "transactionId");
+CREATE UNIQUE INDEX "CategoriesOnMovements_categoryId_movementId_key" ON "CategoriesOnMovements"("categoryId", "movementId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_category_subcategory_key" ON "Category"("category", "subcategory");

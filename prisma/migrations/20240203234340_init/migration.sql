@@ -24,6 +24,25 @@ CREATE TABLE "Category" (
 );
 
 -- CreateTable
+CREATE TABLE "Debt" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "disbursement" INTEGER NOT NULL,
+    "repayment" INTEGER NOT NULL,
+    "remaining" DECIMAL NOT NULL,
+    CONSTRAINT "Debt_disbursement_fkey" FOREIGN KEY ("disbursement") REFERENCES "CategoriesOnMovements" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "Debt_repayment_fkey" FOREIGN KEY ("repayment") REFERENCES "CategoriesOnMovements" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
+CREATE TABLE "ForeignMovement" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "amount" DECIMAL NOT NULL,
+    "currency" TEXT NOT NULL,
+    "movementId" INTEGER NOT NULL,
+    CONSTRAINT "ForeignMovement_movementId_fkey" FOREIGN KEY ("movementId") REFERENCES "Movement" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+-- CreateTable
 CREATE TABLE "Movement" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "concept" TEXT NOT NULL,
@@ -41,3 +60,9 @@ CREATE UNIQUE INDEX "CategoriesOnMovements_categoryId_movementId_key" ON "Catego
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Category_category_subcategory_key" ON "Category"("category", "subcategory");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Debt_disbursement_repayment_key" ON "Debt"("disbursement", "repayment");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ForeignMovement_movementId_key" ON "ForeignMovement"("movementId");

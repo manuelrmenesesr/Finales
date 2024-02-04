@@ -18,12 +18,14 @@ model Account {
 }
 
 model CategoriesOnMovements {
-  id         Int      @id @default(autoincrement())
-  categoryId Int
-  movementId Int
-  amount     Decimal
-  Category   Category @relation(fields: [categoryId], references: [id])
-  Movements  Movement @relation(fields: [movementId], references: [id])
+  id                       Int      @id @default(autoincrement())
+  categoryId               Int
+  movementId               Int
+  amount                   Decimal
+  Category                 Category @relation(fields: [categoryId], references: [id])
+  Movements                Movement @relation(fields: [movementId], references: [id])
+  disbursementTransactions Debt[]   @relation("disbursementMovement")
+  repaymentTransactions    Debt[]   @relation("repaymentMovement")
 
   @@unique([categoryId, movementId])
 }
@@ -32,9 +34,28 @@ model Category {
   id                    Int                     @id @default(autoincrement())
   category              String
   subcategory           String
-  mategoriesOnMovements CategoriesOnMovements[]
+  categoriesOnMovements CategoriesOnMovements[]
 
   @@unique([category, subcategory])
+}
+
+model Debt {
+  id                    Int                   @id @default(autoincrement())
+  disbursement          Int
+  repayment             Int
+  remaining             Decimal
+  DisbursementMovements CategoriesOnMovements @relation("disbursementMovement", fields: [disbursement], references: [id])
+  RepaymentMovements    CategoriesOnMovements @relation("repaymentMovement", fields: [repayment], references: [id])
+
+  @@unique([disbursement, repayment])
+}
+
+model ForeignMovement {
+  id         Int      @id @default(autoincrement())
+  amount     Decimal
+  currency   String
+  movementId Int      @unique
+  Movements  Movement @relation(fields: [movementId], references: [id])
 }
 
 model Movement {
@@ -45,4 +66,5 @@ model Movement {
   accountId             Int
   Account               Account                 @relation(fields: [accountId], references: [id])
   categoriesOnMovements CategoriesOnMovements[]
+  ForeignMovement       ForeignMovement?
 }

@@ -1,13 +1,13 @@
-export default async (prisma, transaction) => {
+export default async (prisma, movement) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const transactionCreated = await prisma.movement.create({
-        data: transaction,
+      const movementCreated = await prisma.movement.create({
+        data: movement,
       })
-      console.log("[INFO] Transaction created: ", transactionCreated);
+      console.log("[INFO] Movment created: ", movementCreated);
       resolve();
     } catch (error) {
-      console.error('[ERROR] Transaction not created:', transaction, error);
+      console.error('[ERROR] Movment not created:', movement, error);
       reject(error);
     }
   });

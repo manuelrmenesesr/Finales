@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "init-db": "npx prisma migrate deploy && node src/controller/init.js",
-    "start": "node src/controller/saveMovements.js"
+    "saveMovements": "node src/controller/saveMovements.js",
+    "saveDebts": "node src/controller/saveDebts.js"
   },
   "repository": {
     "type": "git",

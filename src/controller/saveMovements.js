@@ -14,8 +14,8 @@ const prisma = new PrismaClient();
     for (let i = 0; i < movements.length; i += 10) {
       const batch = movements.slice(i, i + 10);
       await Promise.all(
-        batch.map(transaction =>
-          createMovement(prisma, transaction)
+        batch.map(movement =>
+          createMovement(prisma, movement)
         )
       );
     }

@@ -4,10 +4,10 @@ export default async (prisma, movement) => {
       const movementCreated = await prisma.movement.create({
         data: movement,
       })
-      console.log("[INFO] Movment created: ", movementCreated);
+      console.log("[INFO] Movement created: ", movementCreated);
       resolve();
     } catch (error) {
-      console.error('[ERROR] Movment not created:', movement, error);
+      console.error('[ERROR] Movement not created:', movement, error);
       reject(error);
     }
   });

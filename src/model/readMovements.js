@@ -1,7 +1,7 @@
 export default async (prisma, where) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const result = await prisma.movement.findMany({
+      resolve(await prisma.movement.findMany({
         select: {
           id: true,
           concept: true,
@@ -82,8 +82,7 @@ export default async (prisma, where) => {
         orderBy: {
           date: 'asc'
         }
-      });
-      resolve(result);
+      }));
     }
     catch (error) { reject(error); }
   });

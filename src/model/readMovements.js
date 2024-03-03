@@ -42,7 +42,13 @@ export default async (prisma, where) => {
                           id: true,
                           concept: true,
                           amount: true,
-                          date: true
+                          date: true,
+                          Account: {
+                            select: {
+                              name: true,
+                              entity: true
+                            }
+                          }
                         }
                       }
                     }
@@ -68,7 +74,13 @@ export default async (prisma, where) => {
                           id: true,
                           concept: true,
                           amount: true,
-                          date: true
+                          date: true,
+                          Account: {
+                            select: {
+                              name: true,
+                              entity: true
+                            }
+                          }
                         }
                       }
                     }

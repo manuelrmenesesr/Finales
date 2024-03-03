@@ -20,6 +20,9 @@ export default (movements) => {
           console.log("        Repayment Movement ID:", disbursementTransaction.RepaymentMovements.Movements.id);
           console.log("        Repayment Concept:", disbursementTransaction.RepaymentMovements.Movements.concept);
           console.log("        Repayment Movement Amount:", disbursementTransaction.RepaymentMovements.Movements.amount);
+          console.log("        Repayment Account:", disbursementTransaction.RepaymentMovements.Movements.Account.name);
+          if (disbursementTransaction.RepaymentMovements.Movements.Account.entity)
+            console.log("        Repayment Account entity:", disbursementTransaction.RepaymentMovements.Movements.Account.entity);
           console.log("        Repayment Date:", disbursementTransaction.RepaymentMovements.Movements.date.toISOString().split('T')[0]);
           console.log("        Repayment Category:", disbursementTransaction.RepaymentMovements.Category.category);
           console.log("        Repayment Subcategory:", disbursementTransaction.RepaymentMovements.Category.subcategory);
@@ -35,6 +38,9 @@ export default (movements) => {
           console.log("        Disbursement Movement ID:", repaymentTransaction.DisbursementMovements.Movements.id);
           console.log("        Disbursement Concept:", repaymentTransaction.DisbursementMovements.Movements.concept);
           console.log("        Disbursement Movement Amount:", repaymentTransaction.DisbursementMovements.Movements.amount);
+          console.log("        Disbursement Account:", repaymentTransaction.DisbursementMovements.Movements.Account.name);
+          if (repaymentTransaction.DisbursementMovements.Movements.Account.entity)
+            console.log("        Disbursement Account entity:", repaymentTransaction.DisbursementMovements.Movements.Account.entity);
           console.log("        Disbursement Date:", repaymentTransaction.DisbursementMovements.Movements.date.toISOString().split('T')[0]);
           console.log("        Disbursement Category:", repaymentTransaction.DisbursementMovements.Category.category);
           console.log("        Disbursement Subcategory:", repaymentTransaction.DisbursementMovements.Category.subcategory);

@@ -20,7 +20,7 @@ const prisma = new PrismaClient();
       lte: new Date(args[1])
     }
   }
-  if (args.length == 3) where.Account = { name: args[2] };
+  if (args.length == 3) where.Account = { name: { contains: args[2] } };
 
   try {
     printMovements(await readMovements(prisma, where));

@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "amexReader": "node src/controller/amexReader.js",
     "init-db": "npx prisma migrate deploy && node src/controller/init.js",
     "movements": "node src/controller/movements.js",
     "saveMovements": "node src/controller/saveMovements.js",
@@ -29,6 +30,8 @@
     "prisma": "5.8.1"
   },
   "dependencies": {
-    "@prisma/client": "5.8.1"
+    "@prisma/client": "5.8.1",
+    "dotenv": "16.4.5",
+    "pdfreader": "3.0.2"
   }
 }

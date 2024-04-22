@@ -5,11 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "amexReader": "node src/controller/amexReader.js",
-    "init-db": "npx prisma migrate deploy && node src/controller/init.js",
-    "movements": "node src/controller/movements.js",
-    "saveMovements": "node src/controller/saveMovements.js",
-    "saveDebts": "node src/controller/saveDebts.js"
+    "amexReader": "node --env-file=.env src/controller/amexReader.js",
+    "init-db": "npx prisma migrate deploy && node --env-file=.env src/controller/init.js",
+    "movements": "node --env-file=.env src/controller/movements.js",
+    "saveMovements": "node --env-file=.env src/controller/saveMovements.js",
+    "saveDebts": "node --env-file=.env src/controller/saveDebts.js"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,6 @@
   },
   "dependencies": {
     "@prisma/client": "5.8.1",
-    "dotenv": "16.4.5",
     "pdfreader": "3.0.2"
   }
 }

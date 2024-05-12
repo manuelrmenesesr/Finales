@@ -19,7 +19,7 @@ const prisma = new PrismaClient();
     await Promise.all(
       batch.map(async account => {
         try {
-          console.log("[INFO] Account:", debt);
+          console.log("[INFO] Sending Account:", debt);
           console.log("[INFO] Account created: ", await createAccount(prisma, account));
         } catch (error) {
           console.error('[ERROR] Account not created:', error);
@@ -32,7 +32,7 @@ const prisma = new PrismaClient();
     await Promise.all(
       batch.map(async category => {
         try {
-          console.log("[INFO] Category:", debt);
+          console.log("[INFO] Sending category:", debt);
           console.log("[INFO] Category created: ", await createCategory(prisma, category));
         } catch (error) {
           console.error('[ERROR] Category not created:', error);

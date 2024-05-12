@@ -15,7 +15,7 @@ const prisma = new PrismaClient();
     await Promise.all(
       batch.map(async debt => {
         try {
-          console.log("[INFO] Debt:", debt);
+          console.log("[INFO] Sending debt:", debt);
           console.log("[INFO] Debt created: ", await createDebt(prisma, debt));
         } catch (error) {
           console.error('[ERROR] Debt not created:', error);

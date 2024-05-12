@@ -15,7 +15,7 @@ const prisma = new PrismaClient();
     await Promise.all(
       batch.map(async movement => {
         try {
-          console.log("[INFO] Movement:", movement);
+          console.log("[INFO] Sending movement:", movement);
           console.log("[INFO] Movement created: ", await createMovement(prisma, movement));
         } catch (error) {
           console.error('[ERROR] Movement not created:', error);
